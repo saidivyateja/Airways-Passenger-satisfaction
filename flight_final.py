@@ -19,7 +19,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precision_recall_curve
+#from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precision_recall_curve
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.metrics import precision_score, recall_score
 from st_aggrid import AgGrid, GridUpdateMode, JsCode
@@ -250,14 +250,14 @@ def page3():
                 #plot_confusion_matrix(clf, X_test, y_test, display_labels=   class_names)
                 ConfusionMatrixDisplay.from_estimator(clf, X_test, y_test, display_labels = class_names).plot(cmap = 'gist_heat_r')
                 st.pyplot()
-            if "ROC Curve" in metrics_list:
-                st.subheader("ROC Curve")
-                plot_roc_curve(clf, X_test, y_test)
-                st.pyplot()
-            if "Precision-Recall Curve" in metrics_list:
-                st.subheader("Precision-Recall Curve")
-                plot_precision_recall_curve(clf, X_test, y_test)
-                st.pyplot()
+#             if "ROC Curve" in metrics_list:
+#                 st.subheader("ROC Curve")
+#                 plot_roc_curve(clf, X_test, y_test)
+#                 st.pyplot()
+#             if "Precision-Recall Curve" in metrics_list:
+#                 st.subheader("Precision-Recall Curve")
+#                 plot_precision_recall_curve(clf, X_test, y_test)
+#                 st.pyplot()
         class_names = ["satisfaction", "neutral or dissatisfied"]
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
