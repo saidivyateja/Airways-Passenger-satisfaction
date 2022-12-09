@@ -250,14 +250,14 @@ def page3():
                 #plot_confusion_matrix(clf, X_test, y_test, display_labels=   class_names)
                 ConfusionMatrixDisplay.from_estimator(clf, X_test, y_test, display_labels = class_names).plot(cmap = 'gist_heat_r')
                 st.pyplot()
-            # if "ROC Curve" in metrics_list:
-            #     st.subheader("ROC Curve")
-            #     plot_roc_curve(clf, X_test, y_test)
-            #     st.pyplot()
-            # if "Precision-Recall Curve" in metrics_list:
-            #     st.subheader("Precision-Recall Curve")
-            #     plot_precision_recall_curve(clf, X_test, y_test)
-            #     st.pyplot()
+            if "ROC Curve" in metrics_list:
+                st.subheader("ROC Curve")
+                plot_roc_curve(clf, X_test, y_test)
+                st.pyplot()
+            if "Precision-Recall Curve" in metrics_list:
+                st.subheader("Precision-Recall Curve")
+                plot_precision_recall_curve(clf, X_test, y_test)
+                st.pyplot()
         class_names = ["satisfaction", "neutral or dissatisfied"]
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
