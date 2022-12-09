@@ -22,8 +22,8 @@ from sklearn.model_selection import train_test_split
 #from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precision_recall_curve
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.metrics import precision_score, recall_score
-# from st_aggrid import AgGrid, GridUpdateMode, JsCode
-# from st_aggrid.grid_options_builder import GridOptionsBuilder
+from st_aggrid import AgGrid, GridUpdateMode, JsCode
+from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 df1=pd.read_csv("train.csv")
 df1=df1.dropna()
@@ -118,31 +118,31 @@ def page2():
     sns.heatmap(cdf.corr(), annot = True, annot_kws={"size":20})
     st.pyplot(plt)
 
-#     def aggrid_interactive_table(df: pd.DataFrame):
-#         options = GridOptionsBuilder.from_dataframe(
-#             df, enableRowGroup=True, enableValue=True, enablePivot=True
-#         )
+    def aggrid_interactive_table(df: pd.DataFrame):
+        options = GridOptionsBuilder.from_dataframe(
+            df, enableRowGroup=True, enableValue=True, enablePivot=True
+        )
 
-#         options.configure_side_bar()
+        options.configure_side_bar()
 
-#         options.configure_selection("single")
-#         selection = AgGrid(
-#             df,
-#             enable_enterprise_modules=True,
-#             gridOptions=options.build(),
-#             height = 500,
-#             update_mode=GridUpdateMode.MODEL_CHANGED,
-#             allow_unsafe_jscode=True,
-#         )
+        options.configure_selection("single")
+        selection = AgGrid(
+            df,
+            enable_enterprise_modules=True,
+            gridOptions=options.build(),
+            height = 500,
+            update_mode=GridUpdateMode.MODEL_CHANGED,
+            allow_unsafe_jscode=True,
+        )
 
-#         return selection
+        return selection
 
 
-#     selection = aggrid_interactive_table(df=df)
+    selection = aggrid_interactive_table(df=df)
 
-#     if selection:
-#         st.write("You selected:")
-#         st.json(selection["selected_rows"])
+    if selection:
+        st.write("You selected:")
+        st.json(selection["selected_rows"])
 
     st.subheader('''An interactive plot between columns of the car crash dataset''')
 
@@ -250,14 +250,14 @@ def page3():
                 #plot_confusion_matrix(clf, X_test, y_test, display_labels=   class_names)
                 ConfusionMatrixDisplay.from_estimator(clf, X_test, y_test, display_labels = class_names).plot(cmap = 'gist_heat_r')
                 st.pyplot()
-#             if "ROC Curve" in metrics_list:
-#                 st.subheader("ROC Curve")
-#                 plot_roc_curve(clf, X_test, y_test)
-#                 st.pyplot()
-#             if "Precision-Recall Curve" in metrics_list:
-#                 st.subheader("Precision-Recall Curve")
-#                 plot_precision_recall_curve(clf, X_test, y_test)
-#                 st.pyplot()
+            # if "ROC Curve" in metrics_list:
+            #     st.subheader("ROC Curve")
+            #     plot_roc_curve(clf, X_test, y_test)
+            #     st.pyplot()
+            # if "Precision-Recall Curve" in metrics_list:
+            #     st.subheader("Precision-Recall Curve")
+            #     plot_precision_recall_curve(clf, X_test, y_test)
+            #     st.pyplot()
         class_names = ["satisfaction", "neutral or dissatisfied"]
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -294,7 +294,7 @@ def page3():
 
         Inflight_wifi_service = st.slider('Inflight wifi service', 0,5)
     
-        Departure_Arrival_time = st.slider('Departure_Arrival_time',0,5)
+        DepartureArrival_time_convenient = st.slider('Departure/Arrival_time_convenient',0,5)
 
         Online_booking = st.slider('Ease of Online booking',0,5)
 
@@ -328,7 +328,7 @@ def page3():
             'Class':Class,
             'Flight Distance':Flight_Distance,
             'Inflight wifi service':Inflight_wifi_service,
-            'Departure Arrival time':Departure_Arrival_time,
+            'Departure/Arrival_time_convenient':DepartureArrival_time_convenient,
             'Online booking':Online_booking,
             'Gate_location':Gate_location,
             'Food_drink':Food_drink,
